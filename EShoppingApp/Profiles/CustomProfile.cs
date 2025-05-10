@@ -12,6 +12,8 @@ namespace EShoppingApp.Profiles
             CreateMap<ProductViewModel, Product>().ReverseMap();
             CreateMap<CustomerViewModel, Customer>().ReverseMap();
             CreateMap<OrderViewModel, Order>().ReverseMap();
+            CreateMap<EmployeeViewModel, Employee>().ReverseMap();
+
         }
     }
 }

@@ -2,6 +2,8 @@ using EShoppingApp.Data;
 using EShoppingApp.Profiles;
 using EShoppingApp.Repository;
 using EShoppingApp.Repository.Interfaces;
+using EShoppingApp.Services;
+using EShoppingApp.Services.Interfaces;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +19,8 @@ builder.Services.AddDbContext<EShoppingDbContext>(options =>
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped(typeof(IGenericService<,>), typeof(GenericService<,>));
+
 
 builder.Services.AddAutoMapper(typeof(CustomProfile).Assembly);
 

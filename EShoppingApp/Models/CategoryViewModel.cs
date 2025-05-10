@@ -10,9 +10,12 @@ namespace EShoppingApp.Models
         public string Name { get; set; }
         [DisplayName("Aciqlama")]
         public string Description { get; set; }
+        public int ParentId { get; set; }
 
         [DisplayName("Resm")]
         public IFormFile ImageFile { get; set; }
         public string ImageUrl { get; set; }
+
+        public List<CategoryViewModel> ParentCategories { get; set; }
     }
 }
