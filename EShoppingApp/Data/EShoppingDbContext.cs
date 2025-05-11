@@ -1,9 +1,10 @@
 ﻿using EShoppingApp.Entity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace EShoppingApp.Data
 {
-    public class EShoppingDbContext:DbContext
+    public class EShoppingDbContext:IdentityDbContext<AppUser>
     {
         public EShoppingDbContext(DbContextOptions<EShoppingDbContext> options):base(options)
         {
@@ -16,6 +17,7 @@ namespace EShoppingApp.Data
         public DbSet<ProductDocument> ProductDocuments { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Employee> Employees { get; set; }
+
 
     }
 }

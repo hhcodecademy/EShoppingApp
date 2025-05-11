@@ -1,10 +1,12 @@
 using EShoppingApp.Data;
+using EShoppingApp.Entity;
 using EShoppingApp.Extentions;
 using EShoppingApp.Profiles;
 using EShoppingApp.Repository;
 using EShoppingApp.Repository.Interfaces;
 using EShoppingApp.Services;
 using EShoppingApp.Services.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +19,15 @@ builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
 builder.Services.AddDbContext<EShoppingDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = false;
+    options.User.RequireUniqueEmail = true;
+   
+}).AddEntityFrameworkStores<EShoppingDbContext>()
+    .AddDefaultTokenProviders();
+
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped(typeof(IGenericService<,>), typeof(GenericService<,>));
@@ -47,7 +58,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "areas",
-    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area:exists}/{controller=Account}/{action=SignIn}/{id?}");
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
