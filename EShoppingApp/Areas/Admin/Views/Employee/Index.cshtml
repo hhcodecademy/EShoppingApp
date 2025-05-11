@@ -18,6 +18,19 @@
 	}
 
 </div>
+
+<div>
+	<h2>Employee Salary</h2>
+	@{
+		@await Component.InvokeAsync("CalculateSalary", new
+			{
+				id = "Employee"
+			}
+		)
+
+	}
+
+</div>
 <p>
 	<a asp-action="Create">Create New</a>
 </p>
@@ -55,6 +68,9 @@
 			<th>
 				@Html.DisplayNameFor(model => model.Salary)
 			</th>
+			<th>
+				Calulated Salary
+			</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -91,6 +107,13 @@
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.Salary)
+				</td>
+				<td>
+					@await Component.InvokeAsync("CalculateSalary", new
+						{
+							empId = item.Id
+						}
+					)
 				</td>
 				<td>
 					@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

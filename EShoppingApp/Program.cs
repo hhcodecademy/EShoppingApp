@@ -1,4 +1,5 @@
 using EShoppingApp.Data;
+using EShoppingApp.Extentions;
 using EShoppingApp.Profiles;
 using EShoppingApp.Repository;
 using EShoppingApp.Repository.Interfaces;
@@ -18,8 +19,10 @@ builder.Services.AddDbContext<EShoppingDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped(typeof(IGenericService<,>), typeof(GenericService<,>));
+
+builder.Services.AddCustomServices();
+builder.Services.AddCustomRepositories();
 
 
 builder.Services.AddAutoMapper(typeof(CustomProfile).Assembly);

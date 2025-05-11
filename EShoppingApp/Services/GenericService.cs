@@ -8,8 +8,8 @@ namespace EShoppingApp.Services
 {
     public class GenericService<TVM, TEntity> : IGenericService<TVM, TEntity> where TVM : class where TEntity : BaseEntity, new()
     {
-        private readonly IGenericRepository<TEntity> _repository;
-        private readonly IMapper _mapper;
+        protected readonly IGenericRepository<TEntity> _repository;
+        protected readonly IMapper _mapper;
 
         public GenericService(IMapper mapper, IGenericRepository<TEntity> repository)
         {

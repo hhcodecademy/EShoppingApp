@@ -10,10 +10,10 @@ namespace EShoppingApp.Areas.Admin.Controllers
     [Area("Admin")]
     public class EmployeeController : Controller
     {
-        private readonly IGenericService<EmployeeViewModel,Employee  > _employeeService;
+        private readonly IEmployeeService _employeeService;
        
 
-        public EmployeeController(IGenericService<EmployeeViewModel, Employee> employeeService)
+        public EmployeeController(IEmployeeService employeeService)
         {
             _employeeService = employeeService;
             ;
