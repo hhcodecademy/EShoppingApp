@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EShoppingApp.Migrations
 {
     [DbContext(typeof(EShoppingDbContext))]
-    [Migration("20250511160859_changeUserDomain5")]
-    partial class changeUserDomain5
+    [Migration("20250517115130_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -227,6 +227,7 @@ namespace EShoppingApp.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -495,7 +496,9 @@ namespace EShoppingApp.Migrations
                 {
                     b.HasOne("EShoppingApp.Entity.AppUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });

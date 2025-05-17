@@ -2,12 +2,14 @@
 using EShoppingApp.Entity;
 using EShoppingApp.Models;
 using EShoppingApp.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EShoppingApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Manager,Operator")]
     public class ProductController : Controller
     {
         private readonly IProductRepository _productRepo;

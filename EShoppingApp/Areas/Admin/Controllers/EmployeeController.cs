@@ -3,11 +3,13 @@ using EShoppingApp.Entity;
 using EShoppingApp.Models;
 using EShoppingApp.Repository.Interfaces;
 using EShoppingApp.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EShoppingApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Manager")]
     public class EmployeeController : Controller
     {
         private readonly IEmployeeService _employeeService;

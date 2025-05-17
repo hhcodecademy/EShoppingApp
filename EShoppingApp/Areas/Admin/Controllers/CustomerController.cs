@@ -2,11 +2,13 @@
 using EShoppingApp.Entity;
 using EShoppingApp.Models;
 using EShoppingApp.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EShoppingApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Manager")]
     public class CustomerController : Controller
     {
         private readonly IGenericRepository<Customer> _customerRepository;
